@@ -84,7 +84,6 @@ So directly using your laststate file with thuppu onto a person's system with di
 And this is not desired outcome. Hence , you need to convert your laststate.txt file to a compatible laststate file for the concerned person's os.
 
 You can use the laststate converter named "kaima-thuppu.py" for this. 
-( Kaimathu means handover in Tamil. Wanted to have thuppu as part of the name, hence named it kaimathuppu. Further I split it into Kaima and thuppu. Kaima means minced meat, Thuppu short form for Thupparivalan. Totally unrelated , but found it funny, hence kaima-thuppu. :P :P :D )
 
 Let's say your OS is windows and the other person's os is mac.
 Then you execute the following command :-
