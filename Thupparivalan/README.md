@@ -74,7 +74,7 @@ Through this identification, it takes all the fileID (Google Driver reference to
 Note:
 -----
 
-In case you want to delegate the work to next person to check on the states post the one you have checked last. You would have to provide them with your "laststate.txt" file which they need to have it in their current directory of path. The only thing to be remembered is if the person uses the same OS as yours , it is fine. In case if he uses a different OS from yours , then the laststate file needs to modified little bit.
+In case you want to delegate the work to next person to check on the states post the one you have checked last. You would have to provide them with your "laststate.txt" file which they need to have it in their current directory path. The only thing to be remembered is if the person uses the same OS as yours , it is fine. In case if he uses a different OS from yours , then the laststate file needs to modified little bit.
 
 If you are using Linux or Mac , the last state file will have filepath something like this -  "\parentfolder\testfolder\file".
 If you are using windows , the last state file will have filepath something like this - "rootfolder/testfolder/file". Note the difference in path character. This is because of difference in how each type of OS refers file path.
