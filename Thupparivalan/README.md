@@ -5,7 +5,7 @@ Thupparivalan in tamil means "Detective". It literally translates to "Evidence A
 
 The script was written mainly for a daily task where I would have to take the diff of the changed files or folders within a specific parent folder in google drive and analyze for the content. 
 
-This script identifies the changed files alone (created or modified and not deleted items) and downloads to a folder with <DD-MM-YYYY_HH-MM-SS> naming convention within the same folder as Thupparivalan. This was needed as it was a big headache to identify the changed files/ folders manually and download one by one.
+This script identifies the changed files alone (created or modified and not deleted items) and downloads to a folder with "Evidence-<DD-MM-YYYY_HH-MM-SS>" naming convention within the same folder as Thupparivalan. This was needed as it was a big headache to identify the changed files/ folders manually and download one by one.
 
 
 Setting up Thuppu :-
@@ -63,4 +63,23 @@ iv token.json - File containing authorization details with Full Access Scope.
 
 Now you are ready to run thuppu. :) 
 
+
+Working 
+--------
+
+Each time when Thuppu is run, it creates a state file where it records the entire tree structure of the parent folder.When it is run the next time , it again records the current state of the folder tree structure and diffs between the laststate and current state to identify all the changed files.
+
+Through this identification, it takes all the fileID (Google Driver reference to identify given folder/file) of each of the changed file and downloads them in the same folder structure within a newly created folder with naming convention of "Evidence-<DD-MM-YYYY_HH-MM-SS>". 
+
+Note:
+-----
+
+In case you want to delegate the work to next person to check on the states post the one you have checked last. You would have to provide them with your "laststate.txt" file which they need to have it in their current directory of path. The only things to be remembered is if the person uses the same OS as yours , it is fine. In case if he uses a different OS from yours , then the laststate file needs to modified little bit.
+
+If you are using Linux or Mac , the last state file will have filepath something like this , "\parentfolder\testfolder\file".
+If you are using windows , the last state file will have filepath something like this, "rootfolder/testfolder/file". This is because of how each OS uses to refer to it's path.
+
+Replace the character "/" to "\" or vice-versa depending on which OS the person uses.
+
+This can be automated, however feel lazy to do it. Will mostly add it later when I get freetime.
 
