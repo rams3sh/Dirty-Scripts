@@ -138,8 +138,7 @@ def download_files(changes):
 					print "Downloaded %d%%." % int(status.progress() * 100)+"\n"
 
 #Get Authenticated
-#creds = get_credentials('https://www.googleapis.com/auth/drive.metadata.readonly')
-creds = get_credentials('https://www.googleapis.com/auth/drive')
+creds = get_credentials('https://www.googleapis.com/auth/drive') #Full Access 
 service = build('drive', version='v3', credentials=creds)
 
 
