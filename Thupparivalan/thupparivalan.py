@@ -118,7 +118,7 @@ def download_files(changes):
 	for i in changes:
 		path=os.getcwd()+path_char+ now.strftime("Evidence-%d-%m-%Y_%H-%M-%S")+path_char
 		if i[0]!="-":
-			request = service.files().get(fileId=i[1])
+			request = service.files().get_media(fileId=i[1])
 			if i[3]=="application/vnd.google-apps.folder":
 				path+=i[2]
 				if not os.path.exists(path):
@@ -145,7 +145,7 @@ service = build('drive', version='v3', credentials=creds)
 
 
 #Start Logging the currentstate
-currentstate=open('currentstate.txt','w')
+currentstate=open('currentstate.txt','wb')
 
 #Start iterating and listing from the root folder
 print "\nCurrent Folder Stucture and Last Modified Time:-\n"
@@ -162,12 +162,13 @@ print "\nChanges from previous state:-\n"
 if os.path.exists("laststate.txt"):
 	pass
 else:
-	open("laststate.txt", 'a').close()
+	open("laststate.txt", 'ab').close()
 	
 changes=finding_diff(previousstate=open("laststate.txt","r").readlines(),currentstate=open("currentstate.txt","r").readlines())
 
 if changes == None:
 	print "Nothing to download"
+	os.remove("currentstate.txt")
 else:
 	print "\nDownloading Files:-\n"
 	download_files(changes)
