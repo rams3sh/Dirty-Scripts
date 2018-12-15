@@ -9,4 +9,4 @@ PS: All the scripts here are written just to get the work done. Hence expect som
 
 2. timezone.py - Helps me during forensic analysis for correlation of times from evidences from various timezones. The script gives out a table consisting of corresponding times across various timezones for a given time and the concerned timezone. Data of timezone conversion was collected from the site: https://www.epochconverter.com/timezones.
 
-3. Thupparivalan - Tamil world literally translating to "Evidence Analyzer" which refers to Detective.The script was used to detect changes in a given folder within a google drive. Helps me to analyze whenever a file is uploaded / deleted / modified within the scope of a give parent folder which needs to be monitored.Refer the Readme of the folder for more details.
+3. Thupparivalan - Tamil world which means to Investigator/Detective.The script was used to detect changes in a given folder within a google drive. Helps me to analyze whenever a file is uploaded / deleted / modified within the scope of a give parent folder which needs to be monitored.Refer the Readme of the folder for more details.
