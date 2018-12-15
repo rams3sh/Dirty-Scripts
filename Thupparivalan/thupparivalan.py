@@ -15,7 +15,7 @@ if os.path.exists("thuppu.config"):
 			print "\nParent folder name not set to monitor. Set it in config before running !!"
 			os._exit(1)
 		if config.get('SETTINGS', 'PARENT_FOLDER_ID') == "":
-			print "\nParent Folder ID not set to monitor. Set it in config before running !!"
+			print "\nThe set PARENT_FOLDER_ID in thuppu.config file seems invalid. \n\nFor how to's of  finding folder ID  go to :- \n\"https://googleappsscriptdeveloper.wordpress.com/2017/03/04/how-to-find-your-google-drive-folder-id/\""
 			os._exit(1)
 		if config.get('SETTINGS', 'SECRET_CREDENTIAL_JSON') == "":
 			raise Exception
@@ -28,6 +28,12 @@ if os.path.exists("thuppu.config"):
 else:
 	print "\nConfiguration File thuppu.config not found in path!! Thupparivalan cannot run!!"
 	os._exit(1)
+
+#Check for OS for deciding on path character
+if os.name == "nt":
+	path_char="\\"
+else:
+	path_char="/"
 
 if os.path.exists("credentials.json"):
 	pass
@@ -59,7 +65,7 @@ def iter_folder(id=None,parent_path=None,currentstate=None):
 		for f in response['files']:
 			print parent_path+f['name']+"  "+f['modifiedTime']
 			currentstate.write(parent_path+f['name']+"`"+f['mimeType']+"`"+f['createdTime']+"`"+f['modifiedTime']+"`"+f['id']+"\n")
-			iter_folder(id=f['id'],parent_path=parent_path+f['name']+"\\",currentstate=currentstate)
+			iter_folder(id=f['id'],parent_path=parent_path+f['name']+path_char,currentstate=currentstate)
 		try:
 			params['pageToken'] = response['nextPageToken']
 		except KeyError:
@@ -110,7 +116,7 @@ def finding_diff(previousstate=None,currentstate=None):
 def download_files(changes):
 	now = datetime.datetime.now()
 	for i in changes:
-		path=os.getcwd()+"\\"+ now.strftime("Evidence-%d-%m-%Y_%H-%M-%S")+"\\"
+		path=os.getcwd()+path_char+ now.strftime("Evidence-%d-%m-%Y_%H-%M-%S")+path_char
 		if i[0]!="-":
 			request = service.files().get(fileId=i[1])
 			if i[3]=="application/vnd.google-apps.folder":
@@ -120,15 +126,15 @@ def download_files(changes):
 					os.makedirs(path)	
 					print "Downloaded 100%.\n"
 			else:
-				path+=i[2].__getslice__(0,len(i[2])-i[2][::-1].index("\\"))
+				path+=i[2].__getslice__(0,len(i[2])-i[2][::-1].index(path_char))
 				if not os.path.exists(path):
 					os.makedirs(path)
-				fh=io.FileIO(path+i[2].__getslice__(len(i[2])-i[2][::-1].index("\\"),len(i[2])), 'wb')
+				fh=io.FileIO(path+i[2].__getslice__(len(i[2])-i[2][::-1].index(path_char),len(i[2])), 'wb')
 				downloader = MediaIoBaseDownload(fh, request)
 				done = False
 				while done is False:
 					status, done = downloader.next_chunk()
-					print "Downloading "+path+i[2].__getslice__(len(i[2])-i[2][::-1].index("\\"),len(i[2]))+"...."
+					print "Downloading "+path+i[2].__getslice__(len(i[2])-i[2][::-1].index(path_char),len(i[2]))+"...."
 					print "Downloaded %d%%." % int(status.progress() * 100)+"\n"
 
 #Get Authenticated
@@ -145,7 +151,7 @@ currentstate=open('currentstate.txt','w')
 #Start iterating and listing from the root folder
 print "\nCurrent Folder Stucture and Last Modified Time:-\n"
 try:
-	iter_folder(id=config.get('SETTINGS', 'PARENT_FOLDER_ID'),parent_path=config.get('SETTINGS', 'PARENT_FOLDER_NAME')+"\\",currentstate=currentstate)
+	iter_folder(id=config.get('SETTINGS', 'PARENT_FOLDER_ID'),parent_path=config.get('SETTINGS', 'PARENT_FOLDER_NAME')+path_char,currentstate=currentstate)
 except:
 	print "\nThe set PARENT_FOLDER_ID in thuppu.config file seems invalid. \n\nFor how to's of  finding folder ID  go to :- \n\"https://googleappsscriptdeveloper.wordpress.com/2017/03/04/how-to-find-your-google-drive-folder-id/\""
 	os._exit(1)
