@@ -57,7 +57,7 @@ i. thupparivalan.py / thupparivalan.exe
 
 ii. thuppu.config - The config file for the tool with all the parameters set.
 
-iii. credentials.json - File containing your credentials required to query,fetch and download files using google drive api 
+iii. credentials.json - File containing your credentials for authenticating into drive api. Not required anymore as it is required intially only to get the token.json. 
 
 iv token.json - File containing authorization details with Full Access Scope.
 
