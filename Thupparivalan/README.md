@@ -74,16 +74,17 @@ Through this identification, it takes all the fileID (Google Driver reference to
 Note:
 -----
 
-In case you want to delegate the work to next person to check on the states post the one you have checked last. You would have to provide them with your "laststate.txt" file which they need to have it in their current directory path. The only thing to be remembered is if the person uses the same OS as yours , it is fine. In case if he uses a different OS from yours , then the laststate file needs to modified little bit.
+In case you want to delegate the work to next person to check on the states post the one you have checked last, you would have to provide him/her with your "laststate.txt" file which he/she need to have it in their current directory path. In case if he/she uses a different OS from yours , then the laststate file needs to modified little bit before hand over. Reason given below.
 
 If you are using Linux or Mac , the last state file will have filepath something like this -  "\parentfolder\testfolder\file".
 If you are using windows , the last state file will have filepath something like this - "rootfolder/testfolder/file". Note the difference in path character. This is because of difference in how each type of OS refers file path.
 
-So directly using the laststate file with thuppu onto a person's system with different OS will result in thuppu seeing all the files in the drive as new compared to the laststate resulting in complete download of the root folder contents. 
+So directly using your laststate file with thuppu onto a person's system with different OS other than yours will result in thuppu seeing all the files in the drive as new compared to the laststate resulting in complete download of the root folder contents because of the character change in the files' /folders' path. 
 
 And this is not desired outcome. Hence , you need to convert your laststate.txt file to a compatible laststate file for the concerned person's os.
 
-You can use the laststate converter named "kaima-thuppu.py" for this.
+You can use the laststate converter named "kaima-thuppu.py" for this. 
+( Kaimathu means handover in Tamil. Wanted to have thuppu as part of the name, hence named it kaimathuppu. Further I split it into Kaima and thuppu. Kaima means minced meat, Thuppu short form for Thupparivalan. Totally unrelated , but found it funny, hence kaima-thuppu. :P :P :D )
 
 Let's say your OS is windows and the other person's os is mac.
 Then you execute the following command :-
