@@ -28,7 +28,7 @@ try:
 					fileout.write(line[0].replace("\\","/"))
 				else:
 					fileout.write("`"+line[j])
-		print "Converted Successfully !!\nRename laststate_linux.txt to laststate.txt before using with thuppu."
+		print "Converted Successfully !!\nRename laststate_"+sys.argv[1]+".txt to laststate.txt before using with thuppu."
 	else:
 		print "Given OS not supported"
 		usage()
