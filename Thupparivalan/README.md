@@ -1,7 +1,7 @@
 Thupparivalan (Thuppu - Shortform)
 ----------------------------------
 
-Thupparivalan in tamil means "Detective". It literally translates to "Evidence Analyzer".
+Thupparivalan in tamil means "Detective".
 
 The script was written mainly for a daily task where I would have to take the diff of the changed files or folders within a specific parent folder in google drive and analyze for the content. 
 
