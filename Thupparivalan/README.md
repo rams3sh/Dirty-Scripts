@@ -81,7 +81,13 @@ If you are using windows , the last state file will have filepath something like
 
 So directly using the laststate file with thuppu onto a person's system with different OS will result in thuppu seeing all the files in the drive as new compared to the laststate resulting in complete download of the root folder contents. 
 
-And this is not desired outcome. Hence, replace in "laststate.txt", the all occurence of character "/" to "\\" or vice-versa depending on which OS the person uses.
+And this is not desired outcome. Hence , you need to convert your laststate.txt file to a compatible laststate file for the concerned person's os.
 
-This can be automated, however feel lazy to do it. Will mostly add it later when I get freetime.
+You can use the laststate converter named "kaima-thuppu.py" for this.
 
+Let's say your OS is windows and the other person's os is mac.
+Then you execute the following command :-
+-> python kaima-thuppu.py mac laststate.txt
+
+This will give a new file called laststate_mac.txt. Send this file to the other person.
+The next person should rename this file to laststate.txt and place it in the same folder as Thupparivalan tool. And now , he /she is ready to run the tool for tracking and downloading further changes in the drive.
