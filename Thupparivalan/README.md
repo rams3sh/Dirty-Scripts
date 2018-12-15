@@ -87,6 +87,7 @@ You can use the laststate converter named "kaima-thuppu.py" for this.
 
 Let's say your OS is windows and the other person's os is mac.
 Then you execute the following command :-
+
 -> python kaima-thuppu.py mac laststate.txt
 
 This will give a new file called laststate_mac.txt. Send this file to the other person.
