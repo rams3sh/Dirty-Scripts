@@ -27,7 +27,7 @@ Running Thuppu :-
 
 The tool requires the following files to be in the same folder during the first run:-
 
-i. thupparivalan.py / thupparivalan.exe - The main script / binary
+i. thupparivalan.py  - The main script 
 
 ii. thuppu.config - The config file for the tool
 
@@ -53,7 +53,7 @@ Refer :https://developers.google.com/drive/api/v3/about-auth for more details ab
 
 Finally you will have 4 files in your folder :-
 
-i. thupparivalan.py / thupparivalan.exe 
+i. thupparivalan.py  
 
 ii. thuppu.config - The config file for the tool with all the parameters set.
 
