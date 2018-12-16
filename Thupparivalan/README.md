@@ -31,7 +31,7 @@ i. thupparivalan.py  - The main script
 
 ii. thuppu.config - The config file for the tool
 
-iii. credentials.json - File containing your credentials required to query,fetch and download files using google drive api 
+iii. credentials.json - File containing your credential tokens/secrets required to get authorization token for querying and fetching files using google drive api 
 
 For iii. above, follow the below steps 
 
@@ -53,11 +53,11 @@ Refer :https://developers.google.com/drive/api/v3/about-auth for more details ab
 
 Finally you will have 4 files in your folder :-
 
-i. thupparivalan.py  
+i. thupparivalan.py  - The main script
 
 ii. thuppu.config - The config file for the tool with all the parameters set.
 
-iii. credentials.json - File containing your credentials for authenticating into drive api. Not required anymore as it is required intially only to get the token.json. 
+iii. credentials.json - File containing your credentials / secret token to get authrization token. Not required anymore as it is required only during intial steps to get the token.json. 
 
 iv token.json - File containing authorization details with Full Access Scope.
 
@@ -69,7 +69,7 @@ Working
 
 Each time when Thuppu is run, it creates a state file where it records the entire tree structure of the parent folder.When it is run the next time , it again records the current state of the folder tree structure and diffs between the laststate and current state to identify all the changed files.
 
-Through this identification, it takes all the fileID (Google Driver reference to identify given folder/file) of each of the changed file and downloads them in the same folder structure within a newly created folder with naming convention of "Evidence-<DD-MM-YYYY_HH-MM-SS>". 
+Through this identification, it takes all the fileID (Google Drive reference to identify given folder/file) of each of the changed file and downloads them in the same folder structure within a newly created folder with naming convention of "Evidence-<DD-MM-YYYY_HH-MM-SS>". 
 
 Note:
 -----
