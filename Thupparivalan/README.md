@@ -46,7 +46,7 @@ Set the PARENT_FOLDER_NAME and PARENT_FOLDER_ID in the thuppu.config file.
 For how to's of  finding folder ID  go to :-
 "https://googleappsscriptdeveloper.wordpress.com/2017/03/04/how-to-find-your-google-drive-folder-id/"
 
-Post all the steps above, you would be required to create token.json file which will have the authorizing details for thuppu to use google drive api using your credentials. Need not bother about it, if this file is not in path , thuppu will automatically guide you in creating one. Create a random project name when requested in the portal.This project name is not significant from usage of this tool.
+Post all the steps above, you would be required to create token.json file which will have the authorizing details for thuppu to use google drive api using your credentials. Need not bother about it, if this file is not in path , thuppu will automatically guide you in creating one.
 
 Refer :https://developers.google.com/drive/api/v3/about-auth for more details about the token. Please note by default the scope of the token is "https://www.googleapis.com/auth/drive" which is equivalent of Full access to your drive. I have used this scope to avoid any permission related errors.
 
