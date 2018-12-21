@@ -10,3 +10,7 @@ PS: All the scripts here are written just to get the work done. Hence expect som
 2. timezone.py - Helps me during forensic analysis for correlation of times from evidences from various timezones. The script gives out a table consisting of corresponding times across various timezones for a given time and the concerned timezone. Data of timezone conversion was collected from the site: https://www.epochconverter.com/timezones.
 
 3. Thupparivalan - Tamil world which means to Investigator/Detective.The script was used to detect changes in a given folder within a google drive. Helps me to analyze whenever a file is uploaded / deleted / modified within the scope of a give parent folder which needs to be monitored.Refer the Readme of the folder for more details.
+
+4. AWSome_reporter - This tool helps in converting json output received from queried through AWS developer API to an equivalent sqlite3 db and an excel file. It uses flatten_json library to flatten the multi level json. It replicates all the values of a given level for x times where x is the maximum values accomodated in a given level for making a meaningful record. The script is very inefficient from optimization perspective as any other script in this repo but gets the job done. Have release an exe version of it as part of releases for win 64 guys.  Huge shout out to flatten_json (https://pypi.org/project/flatten_json/) which is the soul of this tool.Check it out.
+    
+    
