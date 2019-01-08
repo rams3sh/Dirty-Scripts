@@ -114,18 +114,45 @@ def finding_diff(previousstate=None,currentstate=None):
 	return changes
 
 def download_files(changes):
+	export_option = { "application/vnd.google-apps.document":"application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/vnd.google-apps.presentation" : "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+	"application/vnd.google-apps.spreadsheet" : "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+	}
+	
+	extension={ "application/vnd.google-apps.document":".docx", "application/vnd.google-apps.presentation" : ".pptx",
+	"application/vnd.google-apps.spreadsheet" : ".xlsx"
+	}
 	now = datetime.datetime.now()
 	for i in changes:
 		path=os.getcwd()+path_char+ now.strftime("Evidence-%d-%m-%Y_%H-%M-%S")+path_char
 		if i[0]!="-":
-			request = service.files().get_media(fileId=i[1])
+			
 			if i[3]=="application/vnd.google-apps.folder":
+				request = service.files().get_media(fileId=i[1])
 				path+=i[2]
 				if not os.path.exists(path):
 					print "Downloading folder "+path
 					os.makedirs(path)	
 					print "Downloaded 100%.\n"
+			elif i[3].__contains__("application/vnd.google-apps."):
+				#print "Google App File : Try downloading manually:"+i[2] 
+				if export_option.get(i[3]) == "" :
+					print "Unknown Google Apps File : Please download "+ path+i[2].__getslice__(len(i[2])-i[2][::-1].index(path_char),len(i[2]))+" manually"
+					return
+				request=service.files().export_media(fileId=i[1],mimeType=export_option.get(i[3]))
+				path+=i[2].__getslice__(0,len(i[2])-i[2][::-1].index(path_char))
+				if not os.path.exists(path):
+					os.makedirs(path)
+				fh=io.FileIO(path+i[2].__getslice__(len(i[2])-i[2][::-1].index(path_char),len(i[2]))+extension.get(i[3]), 'wb')
+				print path+i[2].__getslice__(len(i[2])-i[2][::-1].index(path_char),len(i[2]))+extension.get(i[3])
+				downloader = MediaIoBaseDownload(fh, request)
+				done = False
+				while done is False:
+					status, done = downloader.next_chunk()
+					print "Downloading "+path+i[2].__getslice__(len(i[2])-i[2][::-1].index(path_char),len(i[2]))+"...."
+					print "Downloaded %d%%." % int(status.progress() * 100)+"\n"
+				
 			else:
+				request = service.files().get_media(fileId=i[1])
 				path+=i[2].__getslice__(0,len(i[2])-i[2][::-1].index(path_char))
 				if not os.path.exists(path):
 					os.makedirs(path)
@@ -151,7 +178,8 @@ currentstate=open('currentstate.txt','wb')
 print "\nCurrent Folder Stucture and Last Modified Time:-\n"
 try:
 	iter_folder(id=config.get('SETTINGS', 'PARENT_FOLDER_ID'),parent_path=config.get('SETTINGS', 'PARENT_FOLDER_NAME')+path_char,currentstate=currentstate)
-except:
+except Exception as e:
+	print e
 	print "\nThe set PARENT_FOLDER_ID in thuppu.config file seems invalid. \n\nFor how to's of  finding folder ID  go to :- \n\"https://googleappsscriptdeveloper.wordpress.com/2017/03/04/how-to-find-your-google-drive-folder-id/\""
 	os._exit(1)
 currentstate.close()
